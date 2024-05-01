@@ -84,6 +84,30 @@ def euler_21(ceiling):
     print(f'{amicable_numbers=}')
     return sum(amicable_numbers)
 
+def euler_26():
+    #reciprocal primes. calculate the multiplicate order of 10 modulo the given prime p
+    #This order always divides p-1 and there are a variety of tricks to make modular arithmetic by hand much easier
+    #To show that the order of 10 mod 60013 is 5001, demonstrate 10^5001 = 1 mod 60013
+    #but that 10^d != 1 for any factor of d (5001)
+    #find the smallest n such that 10**n = 1 mod p. n is guaranteed to be a divisor of p-1
+    primes = sorted(prime_sieve(1000))
+    primes_less_1 = [p-1 for p in primes]
+    divisors = [get_all_divisors(pl1) for pl1 in primes_less_1]
+    periodicity = {}
+    for prime, lst_of_divisors in zip(primes, divisors):
+        for div in lst_of_divisors:
+            if 10 **  div % prime == 1:
+                periodicity[prime] = div
+                break
+    max = 0
+    max_prime = 2
+    for prime, period in periodicity.items():
+
+        if period > max:
+            max = period
+            max_prime = prime
+    print(f'{max_prime=} {max=}')
+
 def euler_27():
     max = 0
     for i in range(-1000,1000+1):
@@ -282,5 +306,4 @@ def euler_48_attempt3():
 
 
 if __name__ == "__main__":
-    result = euler_21(10000)
-    print(result)
+    euler_26()

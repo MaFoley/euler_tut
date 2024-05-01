@@ -141,7 +141,32 @@ def prime_sieve(ceiling) -> set:
             for denominator in range(2*n,ceiling+1,n):
                 nums[denominator] = 0
     return set(filter(None, nums))  
+def get_all_divisors(n) -> list:
+    """
+    returns divisors of n including itself
+    """
+    if n <1:
+        return []
+    divisors = [1]
+    for i in range(2,int(math.sqrt(n))+1):
+        if n % i == 0:
+            divisors.append(i)
+            if i != n/i:
+                divisors.append(n//i)
+    divisors.append(n)
+    return sorted(divisors)
 def get_proper_divisors(n) -> list:
+    """
+    returns divisors of n excluding itself
+    """
+    if n <1:
+        return []
+    divisors = [1]
+    for i in range(2,int(math.sqrt(n))+1):
+        if n % i == 0:
+            divisors.append(i)
+            if i != n/i:
+                divisors.append(n//i)
     """
     returns divisors of n excluding itself
     """
