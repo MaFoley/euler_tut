@@ -68,15 +68,22 @@ def euler_14():
             max = chain
             index = i
     print(f"{index=} {max=}")
-def euler_21():
+def euler_21(ceiling):
     #sum_of_divisors(n) = sum of all divisors of a number n
     #if that sum_of_divisors also has as its sum of divisors n,
     # then they are amicable numbers
     #Find all amicable numbers < 10000
     #12: 1,2,3,4,6,12 = 28 
     #12 factorization = 2:2, 3:1
-    tester = get_proper_divisors({2:2,3:1})
-    print(tester)
+    amicable_numbers = set()
+    for n in range(1,ceiling+1):
+        potential_amicable = sum(get_proper_divisors(n))
+        if sum(get_proper_divisors(potential_amicable)) == n and n != potential_amicable:
+            amicable_numbers.add(n)
+    #print(f'{sum_of_divisors[220]=} {sum_of_divisors[284]=}')
+    print(f'{amicable_numbers=}')
+    return sum(amicable_numbers)
+
 def euler_27():
     max = 0
     for i in range(-1000,1000+1):
@@ -275,4 +282,5 @@ def euler_48_attempt3():
 
 
 if __name__ == "__main__":
-    euler_48_attempt3()
+    result = euler_21(10000)
+    print(result)
