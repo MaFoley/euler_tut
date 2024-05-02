@@ -11,6 +11,17 @@ import csv
 CEILING_FOR_FIFTH = 5 * 9 ** 5
 def name_score(name: str) -> int:
     return sum(string.ascii_uppercase.find(char)+1 for char in name)
+def sum_of_digits(number):
+    sum = 0
+    while number != 0:
+        sum += (number % 10)
+        number = number // 10
+    return sum
+def factorial(n):
+    product = 1
+    for x in range(1,n+1):
+        product *= x
+    return product
 def digits_to_power_sum_to_number(number,exp):
     sum = 0
     if number in [0,1]:
@@ -293,5 +304,25 @@ def is_permutation(x,y)->bool:
     x_digits = sorted(digits_of_number(x))
     y_digits = sorted(digits_of_number(y))
     return x_digits == y_digits
+def isLeapYear(year):
+    if year % 400 == 0:
+        return True
+    elif year % 100 == 0:
+        return False
+    elif year % 4 == 0:
+        return True
+    else:
+        return False
+def days_in_month(month, year=2001):
+    """
+    return number of days in a month. Year needed to determine if leap year for February"""
+    if month in [1,3,5,7,8,10,12]:
+        return 31
+    elif month in [4,6,9,11]:
+        return 30
+    elif month == 2:
+        return 29 if isLeapYear(year) else 28
+    else:
+        raise Exception
 if __name__ == "__main__":
     prime_sieve(1_000_000)

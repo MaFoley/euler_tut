@@ -68,6 +68,19 @@ def euler_14():
             max = chain
             index = i
     print(f"{index=} {max=}")
+def euler_19():
+    day_of_week = 2 #Monday
+    count_of_dow = {}
+    for year in range(1901,2000+1):
+        for month in range(1,12+1):
+            for day in range(1,days_in_month(month,year)+1):
+                print(f'{year=} {month=} {day=} {day_of_week=}')
+                if day == 1:
+                    count_of_dow[day_of_week] = count_of_dow.get(day_of_week,0) + 1
+                day_of_week = day_of_week%7 +1
+    print(count_of_dow)
+def euler_20():
+    return sum_of_digits(factorial(100))
 def euler_21(ceiling):
     #sum_of_divisors(n) = sum of all divisors of a number n
     #if that sum_of_divisors also has as its sum of divisors n,
@@ -306,4 +319,4 @@ def euler_48_attempt3():
 
 
 if __name__ == "__main__":
-    euler_26()
+    euler_19()
